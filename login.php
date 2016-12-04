@@ -3,11 +3,23 @@
 	$username = $_REQUEST['username'];
 	$password = $_REQUEST['password'];
 	//$con = false;
-	$con=mysqli_connect("127.8.14.1","foody", "" ,"cheapomail");
-	if (!$con) {
-		echo "Connection failed";
-		return false;
-	}
+	$host = getenv('IP');
+    $username = getenv('C9_USER');
+//   $host = "localhost";
+// 	$username = "tajecarter";
+	$password = '';
+	$database = 'cheapomail';
+	
+	try {
+    $con = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    // set the PDO error mode to exception
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully"; 
+    }
+catch(PDOException $e)
+    {
+    echo "Connection failed: " ;
+    }
 	
    
     $sql = "SELECT * FROM user WHERE username = '$username' and password = '$password';";

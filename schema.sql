@@ -7,6 +7,10 @@
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
+DROP DATABASE IF EXISTS cheapomail;
+CREATE DATABASE cheapomail;
+USE cheapomail;
+
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 

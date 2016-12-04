@@ -4,11 +4,24 @@ session_start();
 $recepient = $_POST["recipient"];
 $subject = $_POST["subject"];
 $body = $_POST["body"];
-$con=mysqli_connect("127.8.14.1","foody", "" ,"cheapomail");
-if (!$con) {
-	echo "Connection failed";
-	return false;
-}
+$host = getenv('IP');
+    $username = getenv('C9_USER');
+//   	$host = "localhost";
+// 	$username = "tajecarter";
+	$password = '';
+	$database = 'cheapomail';
+	
+	try {
+    $con = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    // set the PDO error mode to exception
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully"; 
+    }
+catch(PDOException $e)
+    {
+    echo "Connection failed: " ;
+    }
+
 if(isset($_SESSION['username'])){
     $useridquery =  "SELECT id FROM User WHERE name = '$_SESSION[username]'; ";
     $recidquery =  "SELECT id FROM User WHERE name = '$recipient'; ";

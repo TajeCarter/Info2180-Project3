@@ -6,7 +6,12 @@
 	</tr>
 
 <?php
-	$con=mysqli_connect("127.8.14.1","foody", "" ,"cheapomail");
+	$host = getenv('IP');
+	$username = getenv('C9_USER');
+	$password = '';
+	$database = 'cheapomail';
+	
+	$con=mysqli_connect($host,$username, $password);
 	if (!$con) {
 		echo "Connection failed";
 		return false;
